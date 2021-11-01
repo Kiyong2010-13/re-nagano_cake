@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_30_073222) do
+ActiveRecord::Schema.define(version: 2021_11_01_114616) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "customer_id", null: false
@@ -61,6 +61,12 @@ ActiveRecord::Schema.define(version: 2021_10_30_073222) do
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
+  create_table "genres", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "items", force: :cascade do |t|
     t.integer "genre_id", null: false
     t.string "name", default: "", null: false
@@ -68,6 +74,29 @@ ActiveRecord::Schema.define(version: 2021_10_30_073222) do
     t.text "introduction", default: "", null: false
     t.integer "price", null: false
     t.boolean "is_active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "order_details", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "order_id", null: false
+    t.integer "purchase_price", null: false
+    t.integer "amount", null: false
+    t.integer "productie_status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.string "postal_code", default: "", null: false
+    t.string "shipping_address", default: "", null: false
+    t.string "delivery_name", default: "", null: false
+    t.integer "shipping_fee", null: false
+    t.integer "amount_billed", null: false
+    t.integer "payment_method", default: 0, null: false
+    t.integer "order_status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
