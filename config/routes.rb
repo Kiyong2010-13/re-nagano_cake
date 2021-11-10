@@ -10,4 +10,8 @@ Rails.application.routes.draw do
     registrations: 'admin/registrations'
   }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  namespace :admin do
+    root :to => 'homes#top'
+    resources :genres, only: [:index, :create, :edit, :update]
+  end
 end
