@@ -9,10 +9,46 @@
     <div class="col-sm-3"></div>
     <div class="col-sm-6 my-4 text-center">
       <%= form_with model:@item, url:admin_items_path, local:true do |f| %>
-        <div class="form-group">
-          <label class="col-3">商品画像</label>
-          <%= f.attachment_field :image %>
+        <div class="form-group row my-2">
+          <%= f.label:商品画像, class:"col-sm-4 col-form-control" %>
+          <div class="col-md-6">
+            <%= f.attachment_field :image %>
+          </div>
         </div>
+        <div class="form-group row my-4">
+          <%= f.label :商品名,  class:"col-sm-4 col-form-label" %>
+          <div class="col-md-6">
+           <%= f.password_field :name, class:"form-control" %>
+          </div>
+        </div>
+        <div class="form-group row my-4">
+          <%= f.label :商品説明, class:"col-sm-4 col-form-label" %>
+          <div class="col-md-6">
+            <%= f.text_area :introduction, class:"form-control" %>
+          </div>
+        </div>
+        <div class="form-group row my-4">
+          <%= f.label :ジャンル, class:"col-sm-4 col-form-label" %>
+          <div class="col-md-6">
+          <%= f.collection_select(:genre_id, @genres, :id, :name, prompt: "--選択してください--", class: "form-control") %>
+          </div>
+        </div>
+        <div class="form-group row my-4">
+          <%= f.label :税抜価格, class:"col-sm-4 col-form-label" %>
+          <div class="col-sm-6">
+            <%= f.text_field :price, class: "form-control", placeholder: 1000 %><span>円</span>
+          </div>
+        </div>
+        <div class="form-group row my-4">
+          <%= f.label :販売ステータス, class:"col-sm-4 col-form-label" %>
+          <div class="col-sm-6">
+            <%= f.radio_button :is_active, "販売中", checked: true %>販売中 <%= f.radio_button :is_active, "販売停止中" %>販売停止中
+          </div>
+        </div>
+        <div class="form-group my-4">
+         <p><%= f.submit "新規登録", class: 'btn btn-success btn-block' %></p>
+       </div>
+
       <% end %>
     </div>
     <div class="col-sm-3"></div>
