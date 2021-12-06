@@ -1,6 +1,6 @@
 class HomesController < ApplicationController
   def top
-    @items = Item
+    @items = Item.all
   end
   
   def about
