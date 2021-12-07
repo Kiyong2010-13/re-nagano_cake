@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :customers, controllers: {
-    sessions: 'pubilc/sessions',
+    sessions: 'public/sessions',
     passwords: 'public/passwords',
     registrations: 'public/registrations'
   }
