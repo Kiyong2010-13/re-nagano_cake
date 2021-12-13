@@ -24,8 +24,8 @@ Rails.application.routes.draw do
   get "about" => "homes#about"
   scope module: :public do
     get "customers/my_page" => "customers#show"
-    patch "customers" => "customers#update"
-    get "customers/edit" => "customers#edit"
+    patch "customers/my_page" => "customers#update"
+    get "customers/my_page/edit" => "customers#edit"
     get "customers/unsubscribe" => "customers#unsubscribe"
     patch "customers/withdraw" => "customers#withdraw"
   end
