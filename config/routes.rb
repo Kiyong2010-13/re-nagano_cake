@@ -28,5 +28,6 @@ Rails.application.routes.draw do
     get "customers/my_page/edit" => "customers#edit"
     get "customers/unsubscribe" => "customers#unsubscribe"
     patch "customers/withdraw" => "customers#withdraw"
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
 end
