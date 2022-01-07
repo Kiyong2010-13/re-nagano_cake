@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3 my-3"><h5 class="text-center bg-light">ショッピングカート</h5></div>
+    <div class="col-sm-8 my-3 text-right">
+      <%= link_to "カートを空にする", destroy_all_cart_items_path, class: "btn btn-danger", data: {confirm: "カート内の商品を削除しますか? "}, method: :delete %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 my-3">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th></th>
+          </tr>
+          <% total = 0 %>
+        </thead>
+        <tbody>
+          <tr></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
