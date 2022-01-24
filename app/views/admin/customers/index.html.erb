@@ -21,10 +21,9 @@
           <tr>
             <td><%= customer.id %></td>
             <td><%= link_to customer.full_name, admin_customer_path(customer.id) %></td>
-            <td><%= item.price.to_s(:delimited) %>円</td>
-            <td><%= item.genre.name %></td>
+            <td><%= customer.email %></td>
             <td>
-              <% if customer.is_active == false %>
+              <% if customer.is_deleted == false %>
                 <span>有効</span>
               <% else %>
                 <span>退会</span>
