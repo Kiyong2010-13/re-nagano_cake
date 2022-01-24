@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-6 my-4">
+    <div class="col-sm-6 mt-5">
       <h5 class="text-center"><span class="bg-light">注文情報確認</span></h5>
     </div>
     <div class="col-sm-6 my-3">
@@ -82,7 +82,7 @@
       <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
         <%= f.hidden_field :customer_id %>
         <%= f.hidden_field :amount_billed %>
-        <%= f.hidden_field :total_payment %>
+        <%= f.hidden_field :shipping_fee %>
         <%= f.hidden_field :payment_method %>
         <%= f.hidden_field :delivery_name %>
         <%= f.hidden_field :shipping_address %>
