@@ -34,7 +34,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.save
-    
+
     current_customer.cart_items.each do |cart_item|
       @order_detail = OrderDetail.new
       @order_detail.item_id = cart_item.item_id
@@ -43,10 +43,10 @@ class Public::OrdersController < ApplicationController
       @order_detail.order_id = @order.id
       @order_detail.save
     end
-    
+
     current_customer.cart_items.destroy_all
     redirect_to complete_orders_path
-  end 
+  end
 
   def index
     @orders = current_customer.orders.all
@@ -54,6 +54,7 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @order_details = @order.order_details
   end
 
   private
