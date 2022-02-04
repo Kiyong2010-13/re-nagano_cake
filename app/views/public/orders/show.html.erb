@@ -37,15 +37,31 @@
       <table class="table table-bordered">
         <tr>
           <th>商品合計</th>
-          <td></td>
+          <td>
+            <% total = 0 %>
+            <% @order_details.each do |order_detail| %>
+              <% order_detail.item.add_tax_price.to_s(:delimited) %>
+              <% order_detail.amount %>
+              <% subtotal = (order_detail.item.add_tax_price*order_detail.amount).to_i %>
+              <% subtotal.to_s(:delimited) %>
+              <% total += (order_detail.item.add_tax_price*order_detail.amount) %>
+            <% end %>
+            <%= total.to_i.to_s(:delimited) %>
+          </td>
         </tr>
         <tr>
           <th>配送料</th>
-          <td></td>
+          <td>
+            <% @order.shipping_fee = 800 %>
+            <%= @order.shipping_fee %>
+            </td>
         </tr>
         <tr>
           <th><strong>ご請求額</strong></th>
-          <td></td>
+          <td>
+            <% @order.amount_billed = @order.shipping_fee+total.to_i %>
+            <%= @order.amount_billed.to_s(:delimited) %>
+          </td>
         </tr>
       </table>
     </div>
