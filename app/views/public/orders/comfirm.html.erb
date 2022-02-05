@@ -71,7 +71,8 @@
       <div class="group row">
         <h3 class="col-sm-2 col-form-label"><strong>お届け先</strong></h3>
         <div class="col-sm-6 my-2">
-          <p><%= @order.shipping_address %></p>
+          <p>〒<%= @order.postal_code %><span> <%= @order.shipping_address %></span><br>
+              <%= @order.delivery_name %><br></p>
         </div>
       </div>
     </div>
