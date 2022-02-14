@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 my-4">
+      <h5 class="text-center"><span class="bg-light">注文履歴詳細</span></h5>
+    </div>
+    <div class="col-sm-6 my-3">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-10 my-4">
+      <div class="group row">
+        <label class="col-sm-2"><strong>購入者</strong></label>
+        <div class="col-sm-8">
+         <%= @order.customer.full_name %>
+        </div>
+      </div>
+      <div class="group row mt-2">
+        <label class="col-sm-2"><strong>注文日</strong></label>
+        <div class="col-sm-8">
+          <%= @order.created_at.strftime('%Y/%m/%d') %>
+        </div>
+      </div>
+      <div class="group row mt-2">
+        <label class="col-sm-2"><strong>配送先</strong></label>
+        <div class="col-sm-8">
+          〒<%= @order.postal_code %>      <%= @order.shipping_address %></br>
+                <%= @order.delivery_name %>
+        </div>
+      </div>
+      <div class="group row mt-2">
+        <label class="col-sm-2"><strong>支払方法</strong></label>
+        <div class="col-sm-8">
+          <%= @order.payment_method_i18n %>
+        </div>
+      </div>
+      <div class="group row mt-2">
+        <label class="col-sm-2"><strong>注文ステータス</strong></label>
+         <div class="col-sm-8">
+           <%= form_with model: @order, url:admin_order_path(@order.id), method: :patch, local: true do |f| %>
+             <%= f.select :order_status, options_for_select(Order.order_statuses_i18n.invert, f.object.order_status), {class: "form-control", id: "order_status" } %>
+             <%= f.submit "更新", class: 'btn btn-success btn-sm ml-2' %>
+            <% end %>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
