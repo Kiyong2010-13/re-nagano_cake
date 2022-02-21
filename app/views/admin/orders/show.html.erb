@@ -45,7 +45,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-9">
+    <div class="col-sm-8">
       <table class="table">
         <thead>
           <tr class="text-center">
@@ -75,6 +75,33 @@
         </tbody>
       </table>
     </div>
-    <div class="col-sm-3"></div>
+    <div class="col-sm-4 mt-4">
+      <div class="group row mt-4">
+        <label class="col-sm-4"><strong>商品合計</strong></label>
+        <div class="col-sm-1">
+         <% total = 0 %>
+          <% @order_details.each do |order_detail| %>
+            <% order_detail.item.add_tax_price.to_s(:delimited) %>
+            <% order_detail.amount %>
+            <% total += (order_detail.item.add_tax_price*order_detail.amount) %>
+          <% end %>
+          <%= total.to_i.to_s(:delimited) %>
+        </div>
+      </div>
+      <div class="group row mt-2">
+        <label class="col-sm-4"><strong>送料</strong></label>
+        <div class="col-sm-1">
+          <% @order.shipping_fee = 800 %>
+          <%= @order.shipping_fee %>
+        </div>
+      </div>
+      <div class="group row mt-2">
+        <label class="col-sm-4"><strong>請求合計金額</strong></label>
+        <div class="col-sm-1">
+          <% @order.amount_billed = @order.shipping_fee+total.to_i %>
+          <%= @order.amount_billed.to_i.to_s(:delimited) %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
