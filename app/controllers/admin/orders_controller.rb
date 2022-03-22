@@ -7,6 +7,19 @@ class Admin::OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
+    @order.update(order_params)
+    if @order.order_status == "payment_confirmation"
+      @order_details = @order.order_details
+      @order_details.each do |order_detail|
+        order_detail.waiting_production!
+      end
+    elsif @order.order_status == "sent"
+      @order_details = @order.order_details
+      @order_details.each do |order_detail|
+        order_detail.production_completed!
+      end
+    end
+    redirect_to  admin_order_path(@order.id)
   end
 
   private
